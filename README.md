@@ -78,6 +78,8 @@ playRound([[0, 0], [1, 1], [0, 1], [1, 0], [0, 2]])
 ```
 
 Example of Using Logic to Build an HTML TicTacToe Game
+
+Demo: https://samsamskies.github.io/tictactoe-engine/
 ```html
 <!doctype html>
 <html lang="en">
@@ -180,5 +182,3 @@ Example of Using Logic to Build an HTML TicTacToe Game
 </body>
 </html>
 ```
-
-
