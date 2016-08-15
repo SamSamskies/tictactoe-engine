@@ -35,8 +35,9 @@ playRound([[0, 0], [1, 1], [0, 1], [1, 0], [0, 2]])
 ```
 
 Script Tag
-```js
+```html
 <script src="node_modules/tictactoe-engine/dist/ticTacToeEngine.js"></script>
+<script>
 const { playRound } = window.ticTacToeEngine;
 
 playRound([[0, 0]])
@@ -53,6 +54,7 @@ playRound([[0, 0], [1, 1], [0, 1], [1, 0]])
 
 playRound([[0, 0], [1, 1], [0, 1], [1, 0], [0, 2]])
 // => { currentPlayer: 'x', isWinner: true }
+</script>
 ```
 
 Node
