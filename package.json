@@ -1,6 +1,6 @@
 {
   "name": "tictactoe-engine",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "You provide the moves and this module will handle the game logic.",
   "main": "index.js",
   "scripts": {
