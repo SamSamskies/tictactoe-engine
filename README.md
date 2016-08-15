@@ -35,7 +35,7 @@ playRound([[0, 0], [1, 1], [0, 1], [1, 0], [0, 2]])
 ```
 
 Script Tag
-```html
+```js
 <script src="node_modules/tictactoe-engine/dist/ticTacToeEngine.js"></script>
 const { playRound } = window.ticTacToeEngine;
 
