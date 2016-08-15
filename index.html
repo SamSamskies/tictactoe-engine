@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.min.css" />
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.ie.min.css" />
+    <![endif]-->
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .row {
+            display: flex;
+        }
+
+        .cell {
+            width: 200px;
+            height: 200px;
+            border: 2px solid black;
+            font-size: 200px;
+            text-align: center;
+            line-height: 160px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="github-fork-ribbon-wrapper right">
+        <div class="github-fork-ribbon" style="background-color: #333;">
+            <a href="https://github.com/SamSamskies/tictactoe-engine/tree/gh-pages">See the Code</a>
+        </div>
+    </div>
+    <div class="board">
+        <div class="row" data-row="0">
+            <div class="cell" data-column="0"></div>
+            <div class="cell" data-column="1"></div>
+            <div class="cell" data-column="2"></div>
+        </div>
+        <div class="row" data-row="1">
+            <div class="cell" data-column="0"></div>
+            <div class="cell" data-column="1"></div>
+            <div class="cell" data-column="2"></div>
+        </div>
+        <div class="row" data-row="2">
+            <div class="cell" data-column="0"></div>
+            <div class="cell" data-column="1"></div>
+            <div class="cell" data-column="2"></div>
+        </div>
+    </div>
+    <script src="/dist/ticTacToeEngine.js"></script>
+    <script>
+        const { playRound } = window.ticTacToeEngine;
+
+        startGame();
+
+        function startGame () {
+            let moves = [];
+
+            document.querySelector('.board').addEventListener('click', (e) => {
+                const move = convertCellToCoordinates(e.target);
+
+                if (checkIfMoveWasAlreadyMade(moves, move)) {
+                    return;
+                }
+
+                moves.push(move);
+
+                const { currentPlayer, winner } = playRound(moves);
+
+                updateCellContents(e.target, currentPlayer);
+
+                if (winner === '') {
+                    return;
+                }
+
+                // Give DOM time to update before showing
+                setTimeout(() => {
+                    alert(`winner is ${winner}`);
+                    window.location.reload();
+                }, 100);
+            });
+        }
+
+        function checkIfMoveWasAlreadyMade (moves, [moveX, moveY]) {
+            return moves.find(([x, y]) => moveX === x && moveY === y);
+        }
+
+        function convertCellToCoordinates (cellNode) {
+            const x = parseInt(cellNode.closest('.row').getAttribute('data-row'));
+            const y = parseInt(cellNode.getAttribute('data-column'));
+
+            return [x, y];
+        }
+
+        function updateCellContents (cellNode, currentPlayer) {
+            cellNode.innerHTML = currentPlayer;
+        }
+    </script>
+</body>
+</html>
