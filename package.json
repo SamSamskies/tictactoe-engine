@@ -1,12 +1,14 @@
 {
   "name": "tictactoe-engine",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "You provide the moves and this module will handle the game logic.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel src --out-dir dist --source-maps inline",
-    "build:watch": "babel src --out-dir dist --source-maps inline --watch",
+    "build": "npm run clean && mkdir dist && npm run build:script && npm run build:module",
+    "build:module": "babel src --out-dir dist --ignore ticTacToeEngine.js --source-maps inline",
+    "build:script": "browserify src/ticTacToeEngine.js -o dist/ticTacToeEngine.js -t [ babelify --presets [ es2015 ] ]",
+    "clean": "rm -rf dist",
     "prepublish": "npm run build"
   },
   "repository": {
@@ -26,6 +28,8 @@
   "devDependencies": {
     "babel-cli": "^6.11.4",
     "babel-core": "^6.13.2",
-    "babel-preset-es2015": "^6.13.2"
+    "babel-preset-es2015": "^6.13.2",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.0"
   }
 }
